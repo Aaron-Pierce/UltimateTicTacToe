@@ -2,32 +2,71 @@
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Ultimate tic tac toe</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./index.css">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ultimate Tic Tac Toe</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js'></script>
+    <style>
+        .wrapper {
+            width: 99%;
+            height: 99%;
+            margin-top: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 2vw;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+        }
+
+        .columns {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+    </style>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        
-            <div id="board">
-                <div class="square s1"></div>
-                <div class="square s2"></div>
-                <div class="square s3"></div>
-                <div class="square s4"></div>
-                <div class="square s5"></div>
-                <div class="square s6"></div>
-                <div class="square s7"></div>
-                <div class="square s8"></div>
-                <div class="square s9"></div>
+    <div class="wrapper">
+        <h1>Ultimate Tic Tac Toe</h1>
+        <div class="columns">
+            <div>
+                <a style="text-decoration: underline">Live Game</a><br>
+                <input placeholder="Room Code" id="roomCode">
+                <button onclick="joinGame()">Join</button>
+                <hr>
+                <button onclick="createGame()">Create New Game</button>
             </div>
-
-        <script src="./index.js" async defer></script>
-    </body>
+            <div></div>
+            <div>
+                <a href="./offline.html">Offline Game</a><br>
+                <a href="./offline.html"><button>Start offline Game</button></a>
+            </div>
+        </div>
+    </div>
+    <script>
+        let socket = io();
+        let alphabet = "abcdefghijklmnopqrstuvwxyz123456789";
+        function randChar(){
+            return alphabet.substr(Math.floor(Math.random() * alphabet.length), 1)
+        }
+    function joinGame(){
+        window.location.assign("./live.html?" + document.getElementById("roomCode").value)
+    }
+    function createGame(){
+        let code = randChar() + randChar() + randChar() + randChar();
+        socket.emit("newRoom", code);
+        window.location.assign("./live.html?" + code)
+    }
+    </script>
+</body>
 </html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Ultimate tic tac toe</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="./css/live.css">
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js'></script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+            <h1 id="playerTracker"><span id="player">X</span>'s turn, you are <span id="you"></span></h1>
+            <h1 id="roomTracker">Room Code: <span id="room"></span></h1>
+            <div id="board">
+                <div class="square s1 largeSquare"></div>
+                <div class="square s2 largeSquare"></div>
+                <div class="square s3 largeSquare"></div>
+                <div class="square s4 largeSquare"></div>
+                <div class="square s5 largeSquare"></div>
+                <div class="square s6 largeSquare"></div>
+                <div class="square s7 largeSquare"></div>
+                <div class="square s8 largeSquare"></div>
+                <div class="square s9 largeSquare"></div>
+            </div>
+        <script src="./js/square.js"></script>
+        <script src="./js/live.js" async defer></script>
+    </body>
+</html>

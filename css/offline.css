@@ -1,0 +1,97 @@
+.s1 {
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.s2 {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+}
+
+.s3 {
+    border-bottom: 1px solid black;
+}
+
+.s4 {
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+}
+
+.s5 {
+    border: 1px solid black;
+}
+
+.s6 {}
+
+.s7 {
+    border-right: 1px solid black;
+}
+
+.s9 {
+    margin-top: 1px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    margin-left: 1px
+}
+
+.square {
+    width: 100%;
+    height: 100%;
+    display: inline-grid;
+    text-align: center;
+    font-size: 3.5vw
+}
+
+#board {
+    width: 50vw;
+    height: 50vw;
+    margin-left: 22.5vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.subBoardWrapper {
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+}
+
+.fullLetter {
+    font-size: 13vw;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@media only screen and (max-width: 1000px) {
+    #board {
+        width: 90vw;
+        height: 90vw;
+        margin-left: 2.5vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+}
+
+.active {
+    background-color: bisque;
+    border: 2px solid black;
+}
+.won{
+    background-color: greenyellow!important;
+}
+#playerTracker{
+    position: absolute;
+}
