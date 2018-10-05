@@ -90,28 +90,30 @@ function checkWinCondition(room, squareId){
     }
 }
 
+function createRoom(code){
+    rooms[code.toLowerCase()] = {
+        squares: [
+            new Square(1),
+            new Square(2),
+            new Square(3),
+            new Square(4),
+            new Square(5),
+            new Square(6),
+            new Square(7),
+            new Square(8),
+            new Square(9),
+        ],
+        players: [],
+        turn: "X"
+    }
 
+    console.log(`created room ${code}`)
+}
 
 io.on('connection', function (socket) {
     console.log('a user connected');
     socket.on("newRoom", function (code) {
-        rooms[code] = {
-            squares: [
-                new Square(1),
-                new Square(2),
-                new Square(3),
-                new Square(4),
-                new Square(5),
-                new Square(6),
-                new Square(7),
-                new Square(8),
-                new Square(9),
-            ],
-            players: [],
-            turn: "X"
-        }
-
-        console.log(`created room ${code}`)
+        createRoom(code);
     })
 
 
@@ -126,6 +128,9 @@ io.on('connection', function (socket) {
 
 
     socket.on("joinRoom", function (roomId) {
+        if(rooms[roomId] === undefined){
+            createRoom(roomId)
+        }
         console.log(`${socket.id} has joined the room among ${rooms[roomId].players}`)
 
         rooms[roomId].players.push(socket.id);
@@ -160,6 +165,31 @@ io.on('connection', function (socket) {
                 io.emit("update", roomCode, targetRoom);
             } else {
                 console.log("tried to click filled square")
+            }
+        }
+    });
+
+    socket.on("leave", function(roomCode){
+        if(rooms[roomCode] !== undefined){
+            console.log("someone left, updating....")
+            let targetRoom = rooms[roomCode];
+            targetRoom.players.splice(targetRoom.players.indexOf(socket.id), 1);
+            console.log("new list of tings:")
+            console.log(targetRoom.players)
+            for(playerIndex in targetRoom.players){
+                console.log("playerIndex is " + playerIndex)
+                console.log(playerIndex == 0)
+                console.log(playerIndex === 0)
+                if(playerIndex == 0){
+                    console.log("player " + targetRoom.players[playerIndex] + " has been set to x")
+                    io.sockets.connected[targetRoom.players[playerIndex]].emit("playerValue", roomCode, "X")
+                }else if(playerIndex == 1){
+                    io.sockets.connected[targetRoom.players[playerIndex]].emit("playerValue", roomCode, "O")
+                    console.log("player " + targetRoom.players[playerIndex] + " has been set to o")
+                }else{
+                    io.sockets.connected[targetRoom.players[playerIndex]].emit("playerValue", roomCode, "spectator")
+                    console.log("player " + targetRoom.players[playerIndex] + " has been set to spectator")
+                }
             }
         }
     })

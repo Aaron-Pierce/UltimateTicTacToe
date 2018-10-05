@@ -55,9 +55,11 @@ function updateSquares() {
 }
 
 socket.on("update", function(roomCheck, data){
-    board = data;
-    document.getElementById("player").innerHTML = board.turn
-    updateSquares();
+    if(roomCode === roomCheck){
+        board = data;
+        document.getElementById("player").innerHTML = board.turn
+        updateSquares();
+    }
 })
 
 socket.on("won", function(roomTag, winner){
@@ -65,3 +67,7 @@ socket.on("won", function(roomTag, winner){
         alert(`${winner} wins!`)
     }
 })
+
+window.addEventListener("beforeunload", function(e){
+    socket.emit("leave", roomCode)
+ }, false);

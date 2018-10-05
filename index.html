@@ -60,7 +60,7 @@
             return alphabet.substr(Math.floor(Math.random() * alphabet.length), 1)
         }
     function joinGame(){
-        window.location.assign("./live.html?" + document.getElementById("roomCode").value)
+        window.location.assign("./live.html?" + document.getElementById("roomCode").value.toLowerCase())
     }
     function createGame(){
         let code = randChar() + randChar() + randChar() + randChar();

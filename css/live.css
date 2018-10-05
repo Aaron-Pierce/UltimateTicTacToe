@@ -74,17 +74,6 @@
 
 }
 
-@media only screen and (max-width: 1000px) {
-    #board {
-        width: 90vw;
-        height: 90vw;
-        margin-left: 2.5vw;
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        grid-template-rows: 1fr 1fr 1fr;
-    }
-}
-
 .active {
     background-color: bisque;
     border: 2px solid black;
@@ -94,8 +83,40 @@
 }
 #playerTracker{
     position: absolute;
+    float: left;
+    top: 0;
+    width: 25vw
 }
 #roomTracker{
     position: absolute;
-    right: 0
+    float: right;
+    right:0;
+    top: 0;
+}
+
+@media only screen and (max-width: 1000px) {
+    body{
+        text-align: center;
+    }
+    #board {
+        width: 90vw;
+        height: 90vw;
+        margin-left: 2.5vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+    }
+
+    #playerTracker{
+        position: relative;
+        /* float: left;
+        bottom: 0; */
+        width: auto;
+    }
+    #roomTracker{
+        position: relative;
+        /* float: right;
+        bottom: 0; */
+
+    }
 }
