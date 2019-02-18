@@ -44,6 +44,12 @@
     font-size: 3.5vw
 }
 
+body{
+    height: 99vw;
+    display: flex;
+    justify-content: center;
+}
+
 #board {
     width: 50vw;
     height: 50vw;
@@ -79,6 +85,7 @@
         width: 90vw;
         height: 90vw;
         margin-left: 2.5vw;
+        margin-top: 25%;
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
         grid-template-rows: 1fr 1fr 1fr;
